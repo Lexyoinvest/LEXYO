@@ -104,7 +104,21 @@ st.markdown("""
 
 
 # Menu à gauche
-regime = st.sidebar.selectbox(Choisissez le régime fiscal , [LMNP réel, LMNP Micro-Bic, LMP réel, SCI à l'IS, SCI à l'IR, SARL de famille, Holding à l'IS, Location nue, Micro foncier, Réel foncier])
+regime = st.sidebar.selectbox(
+    "Choisissez le régime fiscal",
+    [
+        "LMNP réel",
+        "LMNP Micro-Bic",
+        "LMP réel",
+        "SCI à l'IS",
+        "SCI à l'IR",
+        "SARL de famille",
+        "Holding à l'IS",
+        "Location nue",
+        "Micro foncier",
+        "Réel foncier"
+    ]
+)
 
 # --------------------------------------------------------------------------------
 # CLASSE LMNP RÉEL

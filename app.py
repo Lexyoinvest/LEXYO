@@ -46,7 +46,14 @@ st.markdown(
      Titre principal et sous-titre alignés à gauche 
     h1, h2 {
         text-align left !important;
-        padding-left 1rem;
+      st.markdown("""
+    <style>
+        .block-container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    </style>
+""", unsafe_allow_html=True)
     }
 
      Titre Lexyo rose et Simulateur en dégradé 

@@ -1,100 +1,106 @@
 import streamlit as st
-from dataclasses import dataclass, field
 import pandas as pd
-import numpy as np
+from dataclasses import dataclass, field  # ok si tu veux les garder
+import numpy as np                         # idem (pas utilisés ici)
 
-# 🔐 Interface de connexion stylisée
-def login()
-    try
-        credentials = pd.read_csv(credentials.csv)
-    except FileNotFoundError
-        st.error(Fichier des identifiants manquant.)
+# ✅ Toujours en tout premier
+st.set_page_config(page_title="Lexyo — Connexion", layout="wide")
+
+# ---------- Auth ----------
+def _load_credentials(path: str = "credentials.csv") -> pd.DataFrame:
+    """Charge un CSV avec colonnes username,password"""
+    try:
+        df = pd.read_csv(path)
+    except FileNotFoundError:
+        st.error("Fichier des identifiants manquant : 'credentials.csv'.")
         st.stop()
 
-    # Branding Lexyo  logo + titre
-    st.markdown(
-        div style='text-align left; padding-top 40px; padding-bottom 20px;'
-            h1 style='color #31333F; font-size 42px;'Se connecter à Lexyoh1
-        div
-    , unsafe_allow_html=True)
+    # Vérif colonnes
+    lower = {c.lower(): c for c in df.columns}
+    if "username" not in lower or "password" not in lower:
+        st.error("Le fichier 'credentials.csv' doit contenir les colonnes 'username' et 'password'.")
+        st.stop()
 
+    # Renomme proprement
+    df = df.rename(columns={lower["username"]: "username", lower["password"]: "password"})
+    return df[["username", "password"]]
 
-    username = st.text_input(Identifiant)
-    password = st.text_input(Mot de passe, type=password)
+def login():
+    creds = _load_credentials()
 
-    login_btn = st.button(Se connecter, use_container_width=True)
+    # Branding / titre
+    st.markdown("""
+        <div style="text-align:left; padding-top:40px; padding-bottom:20px;">
+            <h1 style="color:#31333F; font-size:42px; margin:0;">Se connecter à Lexyo</h1>
+        </div>
+    """, unsafe_allow_html=True)
 
-    if login_btn
-        if ((credentials['username'] == username) & (credentials['password'] == password)).any()
-            st.session_state['logged_in'] = True
-            st.session_state['username'] = username
-            st.rerun()  # Force le rafraîchissement
-        else
-            st.error(Identifiant ou mot de passe incorrect.)
+    username = st.text_input("Identifiant")
+    password = st.text_input("Mot de passe", type="password")
 
-# ✅ Empêche d'accéder à l'app si non connecté
-if 'logged_in' not in st.session_state or not st.session_state['logged_in']
-    st.set_page_config(page_title=Connexion Lexyo, layout=centered)
+    if st.button("Se connecter", use_container_width=True):
+        ok = ((creds["username"] == username) & (creds["password"] == password)).any()
+        if ok:
+            st.session_state["logged_in"] = True
+            st.session_state["username"] = username
+            st.rerun()
+        else:
+            st.error("Identifiant ou mot de passe incorrect.")
+
+# Si pas connecté, on affiche le login et on stoppe
+if "logged_in" not in st.session_state or not st.session_state["logged_in"]:
     login()
     st.stop()
-    
-st.set_page_config(page_title=Lexyo Simulateur de Rentabilité Immobilière, layout=wide)
 
-# 🌈 Custom CSS  Sliders + Titre aligné gauche + couleurs
-st.markdown(
-    style
-     Titre principal et sous-titre alignés à gauche 
-    h1, h2 {
-        text-align left !important;
-      st.markdown("""
+# ---------- Contenu après login ----------
+# (On est connecté ici)
+st.set_page_config(page_title="Lexyo — Simulateur de Rentabilité", layout="wide")  # inoffensif si déjà appelé
+
+# CSS custom (bien encapsulé dans <style>)
+st.markdown("""
     <style>
-        .block-container {
+        /* Titres alignés à gauche */
+        h1, h2 {
+            text-align: left !important;
             padding-left: 1rem;
-            padding-right: 1rem;
+        }
+
+        /* Titre principal Lexyo */
+        .main-title {
+            font-size: 48px;
+            font-weight: 700;
+            padding-left: 1rem;
+        }
+
+        /* Slider (piste remplie et thumb) — structure Baseweb/Streamlit */
+        div[data-baseweb="slider"] > div > div > div:first-child {
+            background-color: #ff00ff !important;
+        }
+        div[data-baseweb="slider"] span[role="slider"] {
+            background-color: #ff00ff !important;
+            border: 2px solid #ff00ff !important;
+        }
+        /* bulles min/max */
+        div[data-baseweb="slider"] > div > div > div > div {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+            border: none !important;
+            box-shadow: none !important;
         }
     </style>
 """, unsafe_allow_html=True)
-    }
 
-     Titre Lexyo rose et Simulateur en dégradé 
-    .main-title {
-        font-size 48px;
-        font-weight bold;
-        padding-left 1rem;
-    }
-
-     Sliders  fond rose pour la ligne active 
-    [data-baseweb=slider]  div  div  divfirst-child {
-        background-color #ff00ff !important;
-    }
-
-     Sliders  couleur du thumb (point mobile) 
-    [data-baseweb=slider] span[role=slider] {
-        background-color #ff00ff !important;
-        border 2px solid #ff00ff !important;
-    }
-
-     Sliders  valeurs min et max (fond blanc, texte noir) 
-    [data-baseweb=slider]  div  div  div  div {
-        background-color white !important;
-        color black !important;
-        border none !important;
-        box-shadow none !important;
-    }
-    style
-, unsafe_allow_html=True)
-
-# 🎨 Titre Lexyo (rose) + Simulateur (dégradé)
-st.markdown(
-    h1 class=main-title
-        span style=color #ff00ff;Lexyospan
-        span style=
-            background linear-gradient(to right, #ff00ff, #000000);
-            -webkit-background-clip text;
-            -webkit-text-fill-color transparent;
-        Simulateurspan de rentabilité immobilière
-    h1
-, unsafe_allow_html=True)
+# Titre principal : "Lexyo" en rose + "Simulateur" en dégradé
+st.markdown("""
+    <h1 class="main-title" style="margin-top:0;">
+        <span style="color:#ff00ff;">Lexyo</span>
+        <span style="
+            background: linear-gradient(to right, #ff00ff, #000000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        "> Simulateur</span> de rentabilité immobilière
+    </h1>
+""", unsafe_allow_html=True)
 
 
 # Menu à gauche

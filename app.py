@@ -280,34 +280,34 @@ if regime == LMNP réel
     # Interface utilisateur LMNP
     st.title(LMNP Réel)
 
-    prix_bien = st.number_input(Prix du bien (€), value=0)
-    part_terrain = st.slider(Part du terrain (%), 0, 100, 15)
-    apport = st.number_input(Apport (€), value=0)
-    frais_dossier = st.number_input(Frais de dossier (€), value=0)
-    frais_agence = st.number_input(Frais d'agence (€), value=0)
-    montant_travaux = st.number_input(Travaux (€), value=0)
-    frais_garantie = st.number_input(Frais de garantie (€), value=0)
-    frais_tiers = st.number_input(Frais de tiers (€), value=0)
-    mobilier = st.number_input(Mobilier (€), value=0)
+    prix_bien = st.number_input("Prix du bien (€)", value=0)
+    part_terrain = st.slider("Part du terrain (%)", 0, 100, 15)
+    apport = st.number_input("Apport (€)", value=0)
+    frais_dossier = st.number_input("Frais de dossier (€)", value=0)
+    frais_agence = st.number_input("Frais d'agence (€)", value=0)
+    montant_travaux = st.number_input("Travaux (€)", value=0)
+    frais_garantie = st.number_input("Frais de garantie (€)", value=0)
+    frais_tiers = st.number_input("Frais de tiers (€)", value=0)
+    mobilier = st.number_input("Mobilier (€)", value=0)
 
-    duree_annees = st.slider(Durée prêt (années), 5, 30, 20)
-    taux_interet = st.number_input(Taux d'intérêt (%), value=3.0)
-    taux_assurance = st.number_input(Taux assurance emprunteur (%), value=0.3)
-    differe_mois = st.slider(Différé (mois), 0, 24, 0)
+    duree_annees = st.slider("Durée prêt (années)", 5, 30, 20)
+    taux_interet = st.number_input("Taux d'intérêt (%)", value=3.0)
+    taux_assurance = st.number_input("Taux assurance emprunteur (%)", value=0.3)
+    differe_mois = st.slider("Différé (mois)", 0, 24, 0)
 
-    charges_copro = st.number_input(Charges copropriété (€), value=0)
-    assurance_habitation = st.number_input(Assurance habitation (€), value=0)
-    assurance_gli = st.number_input(Assurance GLI (€), value=0)
-    taxe_fonciere = st.number_input(Taxe foncière (€), value=0)
-    frais_entretien = st.number_input(Entretien (€), value=0)
-    frais_compta = st.number_input(Comptabilité (€), value=0)
-    frais_bancaires = st.number_input(Frais bancaires (€), value=0)
-    gestion_locative = st.number_input(Gestion locative (€), value=0)
-    taxe_habitation = st.number_input(Taxe d'habitation (€), value=0)
+    charges_copro = st.number_input("Charges copropriété (€)", value=0)
+    assurance_habitation = st.number_input("Assurance habitation (€)", value=0)
+    assurance_gli = st.number_input("Assurance GLI (€)", value=0)
+    taxe_fonciere = st.number_input("Taxe foncière (€)", value=0)
+    frais_entretien = st.number_input("Entretien (€)", value=0)
+    frais_compta = st.number_input("Comptabilité (€)", value=0)
+    frais_bancaires = st.number_input("Frais bancaires (€)", value=0)
+    gestion_locative = st.number_input("Gestion locative (€)", value=0)
+    taxe_habitation = st.number_input("Taxe d'habitation (€)", value=0)
 
-    loyer_mensuel_hc = st.number_input(Loyer mensuel HC (€), value=0)
-    vacance_locative_mois = st.slider(Vacance locative (mois), 0, 12, 0)
-    tmi = st.slider(TMI (%), 0, 45, 30)
+    loyer_mensuel_hc = st.number_input("Loyer mensuel HC (€)", value=0)
+    vacance_locative_mois = st.slider("Vacance locative (mois)", 0, 12, 0)
+    tmi = st.slider("TMI (%)", 0, 45, 30)
 
     if st.button(Lancer la simulation)
         lmnp = LMNPReel(
@@ -318,11 +318,11 @@ if regime == LMNP réel
             frais_entretien, frais_compta, frais_bancaires, gestion_locative,
             taxe_habitation, loyer_mensuel_hc, vacance_locative_mois, tmi
         )
-        st.subheader(📆 Résultats sur 10 ans)
+        st.subheader("📆 Résultats sur 10 ans")
         st.dataframe(lmnp.resultat_fiscal_annuel())
-        st.subheader(📉 Tableau d’amortissement de l’emprunt)
+        st.subheader("📉 Tableau d’amortissement de l’emprunt")
         st.dataframe(lmnp.tableau_amortissement())
-        st.subheader(📑 Amortissements comptables)
+        st.subheader("📑 Amortissements comptables")
         st.dataframe(lmnp.amortissements())
 # Tu veux aussi la partie SCI à l'IS complète 
 # --------------------------------------------------------------------------------
@@ -507,37 +507,37 @@ elif regime == SCI à l'IS
     # Interface utilisateur SCI à l'IS
     st.title(Simulateur SCI à l’IS)
 
-    prix_bien = st.number_input(Prix du bien (€), value=0)
-    part_terrain = st.slider(Part du terrain (%), 0, 100, 15)
-    apport = st.number_input(Apport (€), value=0)
-    frais_dossier = st.number_input(Frais de dossier (€), value=0)
-    frais_agence = st.number_input(Frais d’agence (€), value=0)
-    montant_travaux = st.number_input(Montant des travaux (€), value=0)
-    frais_garantie = st.number_input(Frais de garantie (€), value=0)
-    frais_tiers = st.number_input(Frais de tiers (€), value=0)
-    mobilier = st.number_input(Montant mobilier (€), value=0)
+    prix_bien = st.number_input("Prix du bien (€)", value=0)
+    part_terrain = st.slider("Part du terrain (%)", 0, 100, 15)
+    apport = st.number_input("Apport (€)", value=0)
+    frais_dossier = st.number_input("Frais de dossier (€)", value=0)
+    frais_agence = st.number_input("Frais d’agence (€)", value=0)
+    montant_travaux = st.number_input("Montant des travaux (€)", value=0)
+    frais_garantie = st.number_input("Frais de garantie (€)", value=0)
+    frais_tiers = st.number_input("Frais de tiers (€)", value=0)
+    mobilier = st.number_input("Montant mobilier (€)", value=0)
 
-    duree_annees = st.slider(Durée prêt (années), 5, 30, 20)
-    taux_interet = st.number_input(Taux d’intérêt (%), value=3.0)
-    taux_assurance = st.number_input(Taux assurance emprunteur (%), value=0.3)
-    differe_mois = st.slider(Différé (mois), 0, 24, 0)
+    duree_annees = st.slider("Durée prêt (années)", 5, 30, 20)
+    taux_interet = st.number_input("Taux d’intérêt (%)", value=3.0)
+    taux_assurance = st.number_input("Taux assurance emprunteur (%)", value=0.3)
+    differe_mois = st.slider("Différé (mois)", 0, 24, 0)
 
-    charges_copro = st.number_input(Charges de copropriété (€), value=0)
-    assurance = st.number_input(Assurance PNO (€), value=0)
-    assurance_gli = st.number_input(Assurance GLI (€), value=0)
-    taxe_fonciere = st.number_input(Taxe foncière (€), value=0)
-    frais_entretien = st.number_input(Frais d'entretien (€), value=0)
-    frais_compta = st.number_input(Frais comptabilité (€), value=0)
-    frais_bancaires = st.number_input(Frais bancaires (€), value=0)
-    gestion_locative = st.number_input(Gestion locative (€), value=0)
+    charges_copro = st.number_input("Charges de copropriété (€)", value=0)
+    assurance = st.number_input("Assurance PNO (€)", value=0)
+    assurance_gli = st.number_input("Assurance GLI (€)", value=0)
+    taxe_fonciere = st.number_input("Taxe foncière (€)", value=0)
+    frais_entretien = st.number_input("Frais d'entretien (€)", value=0)
+    frais_compta = st.number_input("Frais comptabilité (€)", value=0)
+    frais_bancaires = st.number_input("Frais bancaires (€)", value=0)
+    gestion_locative = st.number_input("Gestion locative (€)", value=0)
 
-    loyer_mensuel_hc = st.number_input(Loyer mensuel HC (€), value=0)
-    vacance_locative_mois = st.slider(Vacance locative (mois), 0, 12, 0)
+    loyer_mensuel_hc = st.number_input("Loyer mensuel HC (€)", value=0)
+    vacance_locative_mois = st.slider("Vacance locative (mois)", 0, 12, 0)
 
-    duree_amort_bati = st.slider(Amortissement bâti, 20, 50, 30)
-    duree_amort_travaux = st.slider(Amortissement travaux, 5, 20, 10)
-    duree_amort_mobilier = st.slider(Amortissement mobilier, 5, 15, 7)
-    duree_amort_frais = st.slider(Amortissement frais annexes, 3, 10, 5)
+    duree_amort_bati = st.slider("Amortissement bâti", 20, 50, 30)
+    duree_amort_travaux = st.slider("Amortissement travaux", 5, 20, 10)
+    duree_amort_mobilier = st.slider("Amortissement mobilier", 5, 15, 7)
+    duree_amort_frais = st.slider("Amortissement frais annexes", 3, 10, 5)
 
     if st.button(Lancer la simulation SCI à l'IS)
         sci = SCIaIS(
@@ -549,11 +549,11 @@ elif regime == SCI à l'IS
             loyer_mensuel_hc, vacance_locative_mois,
             duree_amort_bati, duree_amort_travaux, duree_amort_mobilier, duree_amort_frais
         )
-        st.subheader(📊 Résultats sur 10 ans)
+        st.subheader("📊 Résultats sur 10 ans")
         st.dataframe(sci.resultat_fiscal_annuel())
-        st.subheader(📉 Tableau d’amortissement de l’emprunt)
+        st.subheader("📉 Tableau d’amortissement de l’emprunt")
         st.dataframe(sci.tableau_amortissement_emprunt())
-        st.subheader(📑 Amortissements comptables)
+        st.subheader("📑 Amortissements comptables")
         st.dataframe(sci.amortissements())
 
 
@@ -665,25 +665,25 @@ elif regime == LMNP Micro-Bic
     st.title(Simulation LMNP Micro BIC)
 
     st.subheader(Revenus)
-    loyer_mensuel_hc = st.number_input(Loyer mensuel HC (€), value=0)
-    vacance_locative_mois = st.slider(Vacance locative (mois), 0, 12, 0)
+    loyer_mensuel_hc = st.number_input("Loyer mensuel HC (€)", value=0)
+    vacance_locative_mois = st.slider("Vacance locative (mois)", 0, 12, 0)
 
     st.subheader(Charges)
-    charges_copro = st.number_input(Charges de copropriété (€), value=0)
-    taxe_fonciere = st.number_input(Taxe foncière (€), value=0)
-    frais_gestion = st.number_input(Frais de gestion locative (€), value=0)
-    assurance_pno = st.number_input(Assurance PNO (€), value=0)
-    assurance_gli = st.number_input(Assurance GLI (€), value=0)
+    charges_copro = st.number_input("Charges de copropriété (€)", value=0)
+    taxe_fonciere = st.number_input("Taxe foncière (€)", value=0)
+    frais_gestion = st.number_input("Frais de gestion locative (€)", value=0)
+    assurance_pno = st.number_input("Assurance PNO (€)", value=0)
+    assurance_gli = st.number_input("Assurance GLI (€)", value=0)
 
     st.subheader(Emprunt)
-    montant_emprunt = st.number_input(Montant emprunté (€), value=0)
-    duree_annees = st.slider(Durée de l’emprunt (ans), 5, 30, 20)
-    taux_interet = st.number_input(Taux d’intérêt (%), value=3.0)
-    taux_assurance = st.number_input(Taux assurance (%), value=0.3)
-    differe_mois = st.slider(Différé (mois), 0, 24, 0)
+    montant_emprunt = st.number_input("Montant emprunté (€)", value=0)
+    duree_annees = st.slider("Durée de l’emprunt (ans)", 5, 30, 20)
+    taux_interet = st.number_input("Taux d’intérêt (%)", value=3.0)
+    taux_assurance = st.number_input("Taux assurance (%)", value=0.3)
+    differe_mois = st.slider("Différé (mois)", 0, 24, 0)
 
     st.subheader(Fiscalité)
-    tmi = st.slider(TMI (%), 11, 45, 30)
+    tmi = st.slider("TMI (%)", 11, 45, 30)
 
     if st.button(Lancer la simulation LMNP Micro BIC)
         microbic = MicroBIC(
@@ -695,9 +695,9 @@ elif regime == LMNP Micro-Bic
         )
 
         if microbic.revenus_annuels()  microbic.plafond_microbic
-            st.warning(f⚠️ Revenus bruts annuels ({microbic.revenus_annuels(),.0f} €) dépassent le plafond micro-BIC ({microbic.plafond_microbic,.0f} €). Basculer vers le régime réel.)
+            st.warning("⚠️ Revenus bruts annuels ({microbic.revenus_annuels(),.0f} €) dépassent le plafond micro-BIC ({microbic.plafond_microbic,.0f} €). Basculer vers le régime réel.")
 
-        st.subheader(📊 Résultats sur 10 ans)
+        st.subheader("📊 Résultats sur 10 ans")
         st.dataframe(microbic.resultat_fiscal_annuel()) 
 
 elif regime == SCI à l'IR
@@ -836,34 +836,34 @@ elif regime == SCI à l'IR
     # Interface utilisateur SCI à l’IR
     st.title(Simulateur SCI à l’IR)
 
-    prix_bien = st.number_input(Prix du bien (€), value=0)
-    part_terrain = st.slider(Part du terrain (%), 0, 100, 15)
-    apport = st.number_input(Apport (€), value=0)
-    frais_dossier = st.number_input(Frais de dossier (€), value=0)
-    frais_agence = st.number_input(Frais d’agence (€), value=0)
-    montant_travaux = st.number_input(Montant des travaux (€), value=0)
-    frais_garantie = st.number_input(Frais de garantie (€), value=0)
-    frais_tiers = st.number_input(Frais de tiers (€), value=0)
+    prix_bien = st.number_input("Prix du bien (€)", value=0)
+    part_terrain = st.slider("Part du terrain (%)", 0, 100, 15)
+    apport = st.number_input("Apport (€)", value=0)
+    frais_dossier = st.number_input("Frais de dossier (€)", value=0)
+    frais_agence = st.number_input("Frais d’agence (€)", value=0)
+    montant_travaux = st.number_input("Montant des travaux (€)", value=0)
+    frais_garantie = st.number_input("Frais de garantie (€)", value=0)
+    frais_tiers = st.number_input("Frais de tiers (€)", value=0)
 
-    duree_annees = st.slider(Durée du prêt (années), 5, 30, 20)
-    taux_interet = st.number_input(Taux d’intérêt (%), value=3.0)
-    taux_assurance = st.number_input(Taux d’assurance emprunteur (%), value=0.3)
-    differe_mois = st.slider(Différé (mois), 0, 24, 0)
+    duree_annees = st.slider("Durée du prêt (années)", 5, 30, 20)
+    taux_interet = st.number_input("Taux d’intérêt (%)", value=3.0)
+    taux_assurance = st.number_input("Taux d’assurance emprunteur (%)", value=0.3)
+    differe_mois = st.slider("Différé (mois)", 0, 24, 0)
 
-    charges_copro = st.number_input(Charges de copropriété (€), value=0)
-    assurance = st.number_input(Assurance PNO (€), value=0)
-    assurance_gli = st.number_input(Assurance GLI (€), value=0)
-    taxe_fonciere = st.number_input(Taxe foncière (€), value=0)
-    frais_entretien = st.number_input(Frais d’entretien (€), value=0)
-    frais_compta = st.number_input(Frais de comptabilité (€), value=0)
-    frais_bancaires = st.number_input(Frais bancaires (€), value=0)
-    gestion_locative = st.number_input(Gestion locative (€), value=0)
+    charges_copro = st.number_input("Charges de copropriété (€)", value=0)
+    assurance = st.number_input("Assurance PNO (€)", value=0)
+    assurance_gli = st.number_input("Assurance GLI (€)", value=0)
+    taxe_fonciere = st.number_input("Taxe foncière (€)", value=0)
+    frais_entretien = st.number_input("Frais d’entretien (€)", value=0)
+    frais_compta = st.number_input("Frais de comptabilité (€)", value=0)
+    frais_bancaires = st.number_input("Frais bancaires (€)", value=0)
+    gestion_locative = st.number_input("Gestion locative (€)", value=0)
 
-    loyer_mensuel_hc = st.number_input(Loyer mensuel HC (€), value=0)
-    vacance_locative_mois = st.slider(Vacance locative (mois), 0, 12, 0)
-    tmi = st.slider(TMI (Tranche Marginale d’Imposition en %), 11, 45, 30)
+    loyer_mensuel_hc = st.number_input("Loyer mensuel HC (€)", value=0)
+    vacance_locative_mois = st.slider("Vacance locative (mois)", 0, 12, 0)
+    tmi = st.slider(TMI ("Tranche Marginale d’Imposition en %)", 11, 45, 30)
 
-    if st.button(Lancer la simulation SCI à l’IR)
+    if st.button("Lancer la simulation SCI à l’IR")
         sci_ir = SCIaIR(
             prix_bien, part_terrain, apport, frais_dossier, frais_agence, montant_travaux,
             frais_garantie, frais_tiers,
@@ -873,7 +873,7 @@ elif regime == SCI à l'IR
             loyer_mensuel_hc, vacance_locative_mois, tmi
         )
 
-        st.subheader(📆 Résultats SCI à l’IR sur 10 ans)
+        st.subheader("📆 Résultats SCI à l’IR sur 10 ans")
         st.dataframe(sci_ir.resultat_fiscal_annuel())
         
 elif regime == Location nue

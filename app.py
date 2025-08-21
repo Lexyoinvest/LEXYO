@@ -247,7 +247,7 @@ if regime == "LMNP réel":
             return pd.DataFrame(resultats)
 
     # Interface utilisateur LMNP
-    st.title("LMNP Réel")
+    st.title("Simulation LMNP Réel")
 
     prix_bien = st.number_input("Prix du bien (€)", value=0)
     part_terrain = st.slider("Part du terrain (%)", 0, 100, 15)

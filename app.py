@@ -100,7 +100,7 @@ st.markdown(
         de rentabilité immobilière
     </h1>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True)
 
 # Menu à gauche
 regime = st.sidebar.selectbox("Choisissez le régime fiscal :", ["LMNP réel", "LMNP Micro-Bic", "LMP réel", "SCI à l'IS", "SCI à l'IR", "SARL de famille", "Holding à l'IS", "Location nue", "Micro foncier", "Réel foncier"])

@@ -56,15 +56,25 @@ st.markdown("""
         padding-left: 1rem;
     }
 
-    /* Sliders : fond rose pour la ligne active */
+    /* Sliders : partie active en rose */
     [data-baseweb="slider"] > div > div > div:first-child {
         background-color: #ff00ff !important;
+    }
+
+    /* Sliders : partie inactive en gris clair */
+    [data-baseweb="slider"] > div > div > div:last-child {
+        background-color: #ddd !important;
     }
 
     /* Sliders : couleur du thumb (point mobile) */
     [data-baseweb="slider"] span[role="slider"] {
         background-color: #ff00ff !important;
         border: 2px solid #ff00ff !important;
+    }
+
+    /* Supprimer le carré blanc à l'intérieur du thumb */
+    [data-baseweb="slider"] span[role="slider"]::before {
+        content: none !important;
     }
 
     /* Sliders : valeurs min et max (fond blanc, texte noir) */
@@ -76,19 +86,6 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
-
-# 🎨 Titre Lexyo (rose) + Simulateur (dégradé)
-st.markdown("""
-    <h1 class="main-title">
-        <span style="color: #ff00ff;">Lexyo</span>
-        <span style="
-            background: linear-gradient(to right, #ff00ff, #000000);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        ">Simulateur</span> de rentabilité immobilière
-    </h1>
-""", unsafe_allow_html=True)
-
 
 # Menu à gauche
 regime = st.sidebar.selectbox("Choisissez le régime fiscal :", ["LMNP réel", "LMNP Micro-Bic", "LMP réel", "SCI à l'IS", "SCI à l'IR", "SARL de famille", "Holding à l'IS", "Location nue", "Micro foncier", "Réel foncier"])

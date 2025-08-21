@@ -85,7 +85,22 @@ st.markdown("""
         box-shadow: none !important;
     }
     </style>
-""", unsafe_allow_html=True)
+""", unsafe_allow_html=True) 
+
+# 🎨 Titre custom (Lexyo rose + Simulateur en dégradé)
+st.markdown(
+    """
+    <h1 class="main-title">
+        <span style="color:#ff00ff;">Lexyo</span>
+        <span style="
+            background: linear-gradient(to right, #ff00ff, #000000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        ">Simulateur</span>
+        de rentabilité immobilière
+    </h1>
+    """,
+    unsafe_allow_html=True
 
 # Menu à gauche
 regime = st.sidebar.selectbox("Choisissez le régime fiscal :", ["LMNP réel", "LMNP Micro-Bic", "LMP réel", "SCI à l'IS", "SCI à l'IR", "SARL de famille", "Holding à l'IS", "Location nue", "Micro foncier", "Réel foncier"])

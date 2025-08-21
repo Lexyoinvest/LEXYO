@@ -38,7 +38,7 @@ if 'logged_in' not in st.session_state or not st.session_state['logged_in']:
     login()
     st.stop()
     
-st.set_page_config(page_title="Lexyo Simulateur de Rentabilité Immobilière", layout="wide")
+st.set_page_config(page_title="Lexyo Simulateur de Rentabilité Locative", layout="wide")
 
 # 🌈 Custom CSS : Sliders + Titre aligné gauche + couleurs
 st.markdown("""
@@ -97,7 +97,7 @@ st.markdown(
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         ">Simulateur</span>
-        de rentabilité immobilière
+        de rentabilité locative
     </h1>
     """,
     unsafe_allow_html=True)

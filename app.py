@@ -300,7 +300,7 @@ if regime == "LMNP réel":
             duree_annees, taux_interet, taux_assurance, differe_mois,
             charges_copro, assurance_habitation, assurance_gli, taxe_fonciere,
             frais_entretien, frais_compta, frais_bancaires, gestion_locative,
-            taxe_habitation, loyer_mensuel_hc, vacance_locative_mois, tmi
+            loyer_mensuel_hc, vacance_locative_mois, tmi
         )
         st.subheader("📆 Résultats sur 10 ans")
         st.dataframe(lmnp.resultat_fiscal_annuel())

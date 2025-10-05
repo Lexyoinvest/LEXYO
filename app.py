@@ -133,7 +133,6 @@ if regime == "LMNP réel":
         frais_compta: float
         frais_bancaires: float
         gestion_locative: float
-        taxe_habitation: float
         loyer_mensuel_hc: float
         vacance_locative_mois: int
         tmi: float
@@ -224,7 +223,7 @@ if regime == "LMNP réel":
                 revenus = self.loyer_mensuel_hc * (12 - self.vacance_locative_mois)
                 charges = (self.charges_copro + self.assurance_habitation + self.assurance_gli +
                            self.taxe_fonciere + self.frais_entretien + self.frais_compta +
-                           self.frais_bancaires + self.gestion_locative + self.taxe_habitation)
+                           self.frais_bancaires + self.gestion_locative)
                 charges_recup = self.charges_copro * 0.8
                 interet = interets.get(annee, 0)
                 amorti = amort.get(annee, 0)
